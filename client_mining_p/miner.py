@@ -60,7 +60,7 @@ if __name__ == '__main__':
         # Handle non-json response
         try:
             data = r.json()
-            print(data)
+            # print(data)
         except ValueError:
             print("Error:  Non-json response")
             print("Response returned:")
@@ -75,8 +75,10 @@ if __name__ == '__main__':
 
         r = requests.post(url=node + "/mine", json=post_data)
         data = r.json()
-        print(data)
-
+        print(data[0])
+        if data[0] == 'valid block':
+            coins_mined += 1
+            print('coins mined: ',coins_mined)
         # TODO: If the server responds with a 'message' 'New Block Forged'
         # add 1 to the number of coins mined and print it.  Otherwise,
         # print the message from the server.
